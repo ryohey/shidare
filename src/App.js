@@ -93,7 +93,7 @@ function flatten(arr) {
 const imports = findNodesByType(res.program, "ImportDeclaration")
 const modules = flatten(imports.map(n => n.specifiers.map(s => s.local.name)))
 const blockStatements = findNodesByType(res.program, "BlockStatement")
-const expressions = findNodesByType(res.program, "ExpressionStatement").filter(n => n.expression.right)
+const expressions = findNodesByType(res.program, "ExpressionStatement")
 const usages = findNodes(res.program, n => modules.includes(n.name))
 
 debugger
@@ -103,6 +103,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Shidare</h1>
+        <pre><code>{code}</code></pre>
       </div>
     )
   }
